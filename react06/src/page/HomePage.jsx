@@ -17,6 +17,7 @@ const HomePage = () => {
       <h1> HomePage</h1>
       <Link to ={"/about"}>About페이지로 이동</Link>
       <button onClick={goToProduct}>Product로 이동</button>
+      <Link to={"/mypage"}>MyPage로 이동</Link>
     </div>
   )
 }
