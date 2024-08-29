@@ -28,12 +28,14 @@ function App() {
   return (
     <div>
       <Header />
+
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='login' element={<Login />} />
         <Route path='menulist' element={<GoodList />} />
         <Route path='menulist/:id' element={<GoodDetail />} />
       </Routes>
+      
       <Footer />
     </div>
   );

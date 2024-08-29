@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
+import GoodItem from '../component/GoodItem';
 
 
 /*
@@ -9,7 +10,7 @@ import axios from 'axios'
 
 */
 const GoodList = () => {
-  const [goodsList, setGoodsList]=useState(null);
+  const [goodsList, setGoodsList] = useState(null);
 
   const getGoodsList = async () => {
     const DATA_URL = 'http://localhost:3004/goods_list';
@@ -20,14 +21,14 @@ const GoodList = () => {
     console.log(data);
   }
 
-  useEffect(()=>{
+  useEffect(() => {
     getGoodsList()
-  },[])
+  }, [])
 
 
   return (
     <div>
-
+      <GoodItem />
     </div>
   )
 }
