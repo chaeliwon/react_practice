@@ -1,18 +1,31 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
-const GoodItem = () => {
+/*
+실습 ) 썸네일을 클릭했을때 도시락 상세페이지로 이동하도록 구현하시오
+        URL패턴 : '/menulist/:id'
+*/
+
+const GoodItem = ({item}) => {
+
   return (
     <div className='goods-item'>
       <div className='goods-item-icon'>
-        <em className='goods-new'>New</em>
+        {
+          item.new? <em className='goods-new'>New</em>
+          : item.best? <em className='goods-best'>Beest</em>
+          : ""
+        }
       </div>
       <div className='goods-thumb'>
-        <img src='https://cdn.bonif.co.kr/cmdt/20230704_IfV_1688445795393_92Kb.jpg' alt='도시락 상품 이미지' />
+        <Link to={`/menulist/${item.id}`}>
+        <img src={item.main_thumb} alt='도시락 상품 이미지' />
+        </Link>
       </div>
       <div className='goods-name'>
-        <h4>탄두리 치킨&커리 반상</h4>
+        <h4>{item.name}</h4>
         <p>
-          <span>11,600</span>원
+          <span>{item.price}</span>원
         </p>
       </div>
     </div>
