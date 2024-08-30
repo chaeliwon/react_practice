@@ -3,19 +3,29 @@ import { createSlice } from "@reduxjs/toolkit";
 const counterSlice = createSlice({
     name: 'counter',
     initialState: {
-        count :0
+        count: 0
     },
     reducers: {
-        increment:(state)=>{
+        increment: (state) => {
             console.log('증가', state.count);
-            state.count +=1
+            state.count += 1
         },
-        decrement:(state)=>{
+        decrement: (state) => {
             console.log('감소', state.count);
-            state.count -=1
+            state.count -= 1
         },
-        incrementdou:(state)=>{
-            state.count +=2
+        incrementdou: (state, action) => {
+            console.log(action.payload.num);
+
+            state.count += action.payload.num
+            /*
+            action : type, payload를 묶은 객체형태
+            type : 명령에 대한 구분 값
+            payload : 명령에 대한 값을 저장하는 속성
+            ex ) incrementdou({num:2} -> {type:'counter/incrementdou', payload:{num:2}})
+                                            명령에 대한 구분                전달받은 데이터
+            
+            */
         }
     }
 })

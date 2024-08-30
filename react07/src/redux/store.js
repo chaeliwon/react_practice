@@ -6,6 +6,8 @@ import counterReducer from './reducers/counterSlice'
 
         configureStore() : store를 생성하는 함수
 
+        middleware : action 과  reducer 사이에 특정 함수를 실행하는 중간 처리기 역할
+
 */
 
 export default configureStore ({

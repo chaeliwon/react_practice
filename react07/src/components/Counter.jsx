@@ -20,7 +20,13 @@ const Counter = () => {
         dispath(CounterActions.decrement())
     }
     const handleClick3 = () => {
-        dispath(CounterActions.incrementdou())
+        dispath(CounterActions.incrementdou({num:2}))
+    }
+    const handleClick4 = () => {
+        dispath(CounterActions.incrementdou({num:10}))
+    }
+    const handleClick5 = () => {
+        dispath(CounterActions.incrementdou({num:-10}))
     }
     console.log(count);
 
@@ -31,6 +37,8 @@ const Counter = () => {
             <button onClick={handleClick1}>증가</button>
             <button onClick={handleClick2}>감소</button>
             <button onClick={handleClick3}>2씩증가</button>
+            <button onClick={handleClick4}>10증가</button>
+            <button onClick={handleClick5}>10감소</button>
         </div>
     )
 }
