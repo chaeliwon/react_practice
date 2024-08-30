@@ -1,5 +1,7 @@
 import {configureStore} from '@reduxjs/toolkit'
 import counterReducer from './reducers/counterSlice'
+import logger from 'redux-logger'
+// redux-logger  : 추적용 
 /*
  store : state, reducer를 관리하는 역할
             하나의 프로젝트에 하나의 store만 생성
@@ -14,5 +16,5 @@ export default configureStore ({
     reducer :{
         counter:counterReducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
 })
