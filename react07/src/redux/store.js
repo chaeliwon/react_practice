@@ -13,5 +13,6 @@ import counterReducer from './reducers/counterSlice'
 export default configureStore ({
     reducer :{
         counter:counterReducer
-    }
+    },
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
 })
