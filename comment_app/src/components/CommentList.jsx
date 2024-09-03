@@ -20,14 +20,19 @@ const CommentList = () => {
   console.log(commentList, keyword);
   
   useEffect(()=>{
-
+    if(keyword === ""){
+      setFilter(commentList)
+    }else{
+      let list = commentList.filter((item)=> item.content.includes(keyword))
+      setFilter(list)
+    }
   },[commentList, keyword])
 
   return (
     <div>
-      <div>댓글 수 :0</div>
+      <div>댓글 수 :{filter.length}</div>
       <hr />
-      {commentList?.map((item) => (
+      {filter.map((item) => (
         <CommentItem key={item.id} comment={item} />
       ))}
 
