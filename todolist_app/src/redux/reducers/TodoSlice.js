@@ -10,7 +10,12 @@ const TodoSlice = createSlice({
             state.todoList = state.todoList.concat(action.payload)
          },
         checkChangeTodo: () => { },
-        textChangeTodo: () => { },
+        textChangeTodo: (state, action) => { 
+           state.todoList = state.todoList.map((item)=>({
+                ...item,
+                text: item.id === action.payload.id ? action.payload.text : item.text
+            }))
+         },
         deleteTodo: () => { }
     }
 })
