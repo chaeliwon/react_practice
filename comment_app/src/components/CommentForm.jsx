@@ -29,10 +29,10 @@ const CommentForm = () => {
       <Form>
         <Row className='g-2'>
           <Col lg='8'>
-            <Form.Control type='text' placeholder='댓글 내용 작성' ref={inputRef1} />
+            <Form.Control type='text' placeholder='댓글 내용 작성' ref={inputRef2} />
           </Col>
           <Col lg='4'>
-            <Form.Control type='text' placeholder='작성자 이름' ref={inputRef2} />
+            <Form.Control type='text' placeholder='작성자 이름' ref={inputRef1} />
           </Col>
         </Row>
         <Row className='my-2'>

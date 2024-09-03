@@ -1,9 +1,13 @@
 import React from 'react'
 
-const CommentItem = () => {
+const CommentItem = ({comment}) => {
+  console.log(comment);
+  
+
+
   return (
     <p>
-      <strong>오늘은 리덕스 실습날입니다!</strong>  | 작성자 : 채원
+      <strong>{comment?.content}</strong>  | 작성자 : {comment?.writer}
     </p>
   )
 }
