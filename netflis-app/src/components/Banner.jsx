@@ -2,7 +2,7 @@ import React from 'react';
 
 const Banner = ({ movie }) => {
 
-  const backgroundImageUrl = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie?.backdrop_path}`;
+  const backgroundImageUrl = `https://image.tmdb.org/t/p/w1920_and_h800_multi_faces${movie[0]?.backdrop_path}`;
 
   return (
     <div
@@ -27,8 +27,8 @@ const Banner = ({ movie }) => {
         padding: '20px',
         borderRadius: '10px',
       }}>
-        <h1 style={{ fontSize: '2.5rem', marginBottom: '10px' }}>{movie?.title}</h1>
-        <p style={{ fontSize: '1.2rem', lineHeight: '1.5' }}>{movie?.overview}</p>
+        <h1 style={{ fontSize: '2.5rem', marginBottom: '10px' }}>{movie[0]?.title}</h1>
+        <p style={{ fontSize: '1.2rem', lineHeight: '1.5' }}>{movie[0]?.overview}</p>
       </div>
     </div>
   );

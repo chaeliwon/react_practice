@@ -3,6 +3,7 @@ import api from '../api';
 import { useDispatch, useSelector } from 'react-redux';
 import { initData } from '../redux/reducers/movieSlice';
 import Banner from '../components/Banner';
+import MovieSlide from '../components/MovieSlide';
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -47,10 +48,14 @@ const Home = () => {
   }, [dispatch]);
 
   const popularMovies = useSelector(state=> state.movie.popularMovies);
+  const topRatedMovies = useSelector(state=> state.movie.topRatedMovies);
+  const upcomingMovies = useSelector(state=> state.movie.upcomingMovies);
+
 
   return (
     <div>
-      <Banner movie={popularMovies[0]}/>
+      <Banner movie={popularMovies}/>
+      <MovieSlide popularMovies={popularMovies} topRatedMovies={topRatedMovies} upcomingMovies={upcomingMovies} />
     </div>
   );
 };

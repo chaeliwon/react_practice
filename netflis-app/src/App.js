@@ -5,6 +5,7 @@ import MovieDetail from './pages/MovieDetail';
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'react-multi-carousel/lib/styles.css';
 
 function App() {
 
