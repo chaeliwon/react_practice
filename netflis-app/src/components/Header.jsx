@@ -22,11 +22,11 @@ const Header = () => {
                         style={{ maxHeight: '100px' }}
                         navbarScroll
                     >
-                        <Link to={'/'}>
-                        <Nav.Link href="#action1">Home</Nav.Link>
+                        <Link to={'/'} style={{textDecoration: 'none', outline: 'none'}}>
+                        <Nav.Link href="#action1"><div>Home</div></Nav.Link>
                         </Link>
-                        <Link to={'movies'}>
-                        <Nav.Link href="#action2">Movie</Nav.Link>
+                        <Link to={'movies'} style={{textDecoration: 'none', outline: 'none'}}>
+                        <Nav.Link href="#action2"><div>Movie</div></Nav.Link>
                         </Link>
                     </Nav>
                     <Form className="d-flex">

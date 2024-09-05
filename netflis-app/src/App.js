@@ -1,4 +1,3 @@
-import './App.css';
 import Home from './pages/Home';
 import Movies from './pages/Movies';
 import MovieDetail from './pages/MovieDetail';
@@ -6,6 +5,7 @@ import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-multi-carousel/lib/styles.css';
+import './App.css';
 
 function App() {
 
