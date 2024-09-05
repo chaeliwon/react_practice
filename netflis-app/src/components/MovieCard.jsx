@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
 import { Badge } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';  // useNavigate 사용
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const MovieCard = ({ movie, genreList }) => {
   const [hover, setHover] = useState(false);
+  const navigate = useNavigate();  // navigate 함수 사용
 
   const getGenreNames = (genreIds) => {
     return genreIds.map(id => {
       const genre = genreList.find(g => g.id === id);
       return genre ? genre.name : 'Unknown';
     });
+  };
+
+  const handleClick = () => {
+    navigate(`/movies/${movie.id}`);  // 영화 상세 페이지로 이동
   };
 
   return (
@@ -30,6 +36,7 @@ const MovieCard = ({ movie, genreList }) => {
       }}
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
+      onClick={handleClick}  // 클릭 시 상세 페이지로 이동
     >
       <div
         style={{
