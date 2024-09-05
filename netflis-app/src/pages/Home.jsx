@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import api from '../api';
 import { useDispatch, useSelector } from 'react-redux';
-import { initData } from '../redux/reducers/movieSlice';
+import { initData, setGenreList } from '../redux/reducers/movieSlice';
 import Banner from '../components/Banner';
 import MovieSlide from '../components/MovieSlide';
 
@@ -11,51 +11,60 @@ const Home = () => {
   const getMovieData = async () => {
     const API_URL = '/movie/popular?language=ko-KR&page=1';
     const res = await api.get(API_URL);
-    console.log(res.data);
-    return res.data.results; // 결과 반환
+    return res.data.results;
   };
 
   const getTopRated = async () => {
     const API_URL = '/movie/top_rated?language=ko-KR&page=1';
     const res = await api.get(API_URL);
-    console.log(res.data);
-    return res.data.results; // 결과 반환
+    return res.data.results;
   };
 
   const getUpComing = async () => {
     const API_URL = '/movie/upcoming?language=ko-KR&page=1';
     const res = await api.get(API_URL);
-    console.log(res.data);
-    return res.data.results; // 결과 반환
+    return res.data.results;
+  };
+
+  const getGenres = async () => {
+    const API_URL = '/genre/movie/list?language=ko';
+    const res = await api.get(API_URL);
+    return res.data.genres; // 장르 목록 반환
   };
 
   const fetchData = async () => {
-    // 에러가 발생해도 따로 처리하지 않음
     const popularMovies = await getMovieData();
     const topRatedMovies = await getTopRated();
     const upcomingMovies = await getUpComing();
+    const genres = await getGenres();
 
-    // 받아온 데이터를 dispatch를 통해 리덕스 스토어에 전달
     dispatch(initData({
       popularMovies,
       topRatedMovies,
       upcomingMovies
     }));
+
+    dispatch(setGenreList(genres)); // 장르 목록도 dispatch
   };
 
   useEffect(() => {
     fetchData();
   }, [dispatch]);
 
-  const popularMovies = useSelector(state=> state.movie.popularMovies);
-  const topRatedMovies = useSelector(state=> state.movie.topRatedMovies);
-  const upcomingMovies = useSelector(state=> state.movie.upcomingMovies);
-
+  const popularMovies = useSelector(state => state.movie.popularMovies);
+  const topRatedMovies = useSelector(state => state.movie.topRatedMovies);
+  const upcomingMovies = useSelector(state => state.movie.upcomingMovies);
+  const genreList = useSelector(state => state.movie.genreList); // genreList 추가
 
   return (
     <div>
-      <Banner movie={popularMovies}/>
-      <MovieSlide popularMovies={popularMovies} topRatedMovies={topRatedMovies} upcomingMovies={upcomingMovies} />
+      <Banner movie={popularMovies} />
+      <MovieSlide 
+        popularMovies={popularMovies} 
+        topRatedMovies={topRatedMovies} 
+        upcomingMovies={upcomingMovies} 
+        genreList={genreList} // genreList 전달
+      />
     </div>
   );
 };

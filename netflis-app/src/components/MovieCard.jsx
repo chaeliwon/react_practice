@@ -1,22 +1,16 @@
 import React, { useState } from 'react';
 import { Badge } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css'; // Bootstrap 스타일 import
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-// 장르 ID를 장르 이름으로 변환하는 함수
-const getGenreName = (id) => {
-  const genres = {
-    28: 'Action',
-    12: 'Adventure',
-    16: 'Animation',
-    // 장르 ID에 따른 추가 장르 매핑
-    // 예: 35: 'Comedy', 18: 'Drama', ...
-  };
-  return genres[id] || 'Unknown';
-};
-
-// MovieCard 컴포넌트
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, genreList }) => {
   const [hover, setHover] = useState(false);
+
+  const getGenreNames = (genreIds) => {
+    return genreIds.map(id => {
+      const genre = genreList.find(g => g.id === id);
+      return genre ? genre.name : 'Unknown';
+    });
+  };
 
   return (
     <div
@@ -37,7 +31,6 @@ const MovieCard = ({ movie }) => {
       onMouseEnter={() => setHover(true)}
       onMouseLeave={() => setHover(false)}
     >
-      {/* Hover 시 나타날 정보 */}
       <div
         style={{
           position: 'absolute',
@@ -51,16 +44,15 @@ const MovieCard = ({ movie }) => {
           justifyContent: 'center',
           color: 'white',
           opacity: hover ? 1 : 0,
-          transition: 'opacity 0.3s ease, background-color 0.3s ease',
+          transition: 'opacity 0.3s ease',
           padding: '10px',
-          textAlign: 'center',
         }}
       >
         <h4>{movie.title}</h4>
         <div>
-          {movie.genre_ids.map((id) => (
-            <Badge key={id} pill bg="danger" style={{ marginRight: '5px' }}>
-              {getGenreName(id)}
+          {getGenreNames(movie.genre_ids).map((name, index) => (
+            <Badge key={index} pill bg="danger" style={{ marginRight: '5px' }}>
+              {name}
             </Badge>
           ))}
         </div>
