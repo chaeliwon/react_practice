@@ -57,7 +57,7 @@ const Home = () => {
   const genreList = useSelector(state => state.movie.genreList); // genreList 추가
 
   return (
-    <div>
+    <div style={{ backgroundColor: 'black', }}>
       <Banner movie={popularMovies} />
       <MovieSlide 
         popularMovies={popularMovies} 

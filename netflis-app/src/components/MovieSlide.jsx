@@ -18,17 +18,17 @@ const MovieSlide = ({ popularMovies, topRatedMovies, upcomingMovies, genreList }
 
   return (
     <div>
-      <h1>Popular Movies</h1>
+      <h1 style={{ color: 'white' }}>Popular Movies</h1>
       <Carousel responsive={responsive}>
         {popularMovies.length > 0 && renderMovies(popularMovies)}
       </Carousel>
 
-      <h1>Top Rated Movies</h1>
+      <h1 style={{ color: 'white' }}>Top Rated Movies</h1>
       <Carousel responsive={responsive}>
         {topRatedMovies.length > 0 && renderMovies(topRatedMovies)}
       </Carousel>
 
-      <h1>Upcoming Movies</h1>
+      <h1 style={{ color: 'white' }}>Upcoming Movies</h1>
       <Carousel responsive={responsive}>
         {upcomingMovies.length > 0 && renderMovies(upcomingMovies)}
       </Carousel>
