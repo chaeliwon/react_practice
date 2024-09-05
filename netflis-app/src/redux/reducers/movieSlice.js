@@ -8,7 +8,9 @@ const MovieSlice = createSlice({
         upcomingMovies:[]
     },
     reducers: {
-        initData:(state,action)=>{},
+        initData:(state,action)=>{
+            
+        },
 
     }
 })

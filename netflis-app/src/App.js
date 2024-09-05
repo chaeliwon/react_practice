@@ -14,8 +14,6 @@ function App() {
     const API_URL = '/movie/popular?language=ko-KR&page=1';
     const res = await api.get(API_URL)
 
-    console.log(res.data);
-
   }
 
   useEffect(() => {
