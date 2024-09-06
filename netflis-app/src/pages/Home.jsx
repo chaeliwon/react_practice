@@ -29,7 +29,7 @@ const Home = () => {
   const getGenres = async () => {
     const API_URL = '/genre/movie/list?language=ko';
     const res = await api.get(API_URL);
-    return res.data.genres; // 장르 목록 반환
+    return res.data.genres; 
   };
 
   const fetchData = async () => {
@@ -54,7 +54,7 @@ const Home = () => {
   const popularMovies = useSelector(state => state.movie.popularMovies);
   const topRatedMovies = useSelector(state => state.movie.topRatedMovies);
   const upcomingMovies = useSelector(state => state.movie.upcomingMovies);
-  const genreList = useSelector(state => state.movie.genreList); // genreList 추가
+  const genreList = useSelector(state => state.movie.genreList); 
 
   return (
     <div style={{ backgroundColor: 'black', }}>

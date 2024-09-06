@@ -6,7 +6,7 @@ const movieSlice = createSlice({
         popularMovies: [],
         topRatedMovies: [],
         upcomingMovies: [],
-        genreList: []  // 장르 목록 추가
+        genreList: []  
     },
     reducers: {
         initData: (state, action) => {
@@ -15,7 +15,7 @@ const movieSlice = createSlice({
             state.upcomingMovies = action.payload.upcomingMovies;
         },
         setGenreList: (state, action) => {
-            state.genreList = action.payload;  // 장르 목록 저장
+            state.genreList = action.payload;
         }
     }
 });
