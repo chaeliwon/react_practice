@@ -44,7 +44,7 @@ const Home = () => {
       upcomingMovies
     }));
 
-    dispatch(setGenreList(genres)); // 장르 목록도 dispatch
+    dispatch(setGenreList(genres)); 
   };
 
   useEffect(() => {
@@ -63,7 +63,7 @@ const Home = () => {
         popularMovies={popularMovies} 
         topRatedMovies={topRatedMovies} 
         upcomingMovies={upcomingMovies} 
-        genreList={genreList} // genreList 전달
+        genreList={genreList} 
       />
     </div>
   );
