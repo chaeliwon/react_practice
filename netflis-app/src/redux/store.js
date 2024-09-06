@@ -6,5 +6,5 @@ export default configureStore({
     reducer:{
         movie:movieReducer
     },
-    middleware:(getDefaultMiddleware) => getDefaultMiddleware().concat(logger)
+    middleware:(getDefaultMiddleware) => getDefaultMiddleware( ).concat(logger)
 })
