@@ -7,6 +7,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 const MovieDetail = () => {
   const { id } = useParams();  // URL에서 영화 ID 가져오기
   const [movie, setMovie] = useState(null);
+  const [review, setReview] = useState([]);
+
+  const getReviews = async () => {
+    let res = await api.get(`/movie/${id}/reviews?language=en-US&page=1`)
+    setReview(res.data.results);
+
+  }
 
   useEffect(() => {
     const fetchMovie = async () => {
@@ -15,7 +22,9 @@ const MovieDetail = () => {
     };
 
     fetchMovie();
+    getReviews();
   }, [id]);
+
 
   if (!movie) return <p>Loading...</p>;
 
@@ -40,6 +49,12 @@ const MovieDetail = () => {
           <p>청소년 관람: {movie.adult ? '불가' : '가능'}</p>
           <p>{movie.overview}</p>
           <p>개봉일: {movie.release_date}</p>
+          {/* <p>리뷰 : {review.map((item) => (
+            <div key={item.id}>
+              <h4>{item.author}</h4>
+              <p>{item.content}</p>
+            </div>
+          ))}</p> */}
         </div>
       </div>
     </div>
