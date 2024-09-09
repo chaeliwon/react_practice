@@ -12,7 +12,7 @@ const MovieCard = ({data}) => {
   console.log("[MovieCard]:",data);
   
   const div_styled = {
-    backgroundImage: `url(https://www.themoviedb.org/t/p/w220_and_h330_face${data.backdrop_path})`,
+    backgroundImage: `url(https://www.themoviedb.org/t/p/w220_and_h330_face${data.poster_path})`,
     backgroundRepeat: 'no-repeat',
     backgroundSize: 'cover'
   }
