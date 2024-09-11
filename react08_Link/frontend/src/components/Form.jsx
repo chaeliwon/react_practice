@@ -1,10 +1,15 @@
 import React, { useState } from 'react'
+import api from '../api'
 
 const Form = () => {
 
     const [data, setDate] = useState('');
 
-    const handleSubmit = ()=>{
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+
+        let res = await api.post("/getData", {data:data})
+        console.log(res.data);
         
     }
 

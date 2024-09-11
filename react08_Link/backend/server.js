@@ -9,6 +9,8 @@ const indexRouter = require('./routes')
 const path = require('path')
 
 app.use(express.static(path.join(__dirname,'..','frontend','build')))
+app.use(express.urlencoded({extended:false}))
+app.use(express.json())
 
 
 

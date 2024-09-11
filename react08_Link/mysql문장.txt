@@ -1,0 +1,29 @@
+-- 현재 데이터베이스 조회alter
+SHOW DATABASES;
+
+-- 사용할 데이터 베이스 접근
+USE NODEJS;
+
+-- 테이블 생성 작업
+
+CREATE TABLE NODEJS_MEMBER(
+	ID VARCHAR(100),
+    PW VARCHAR(100),
+    NICKNAME VARCHAR(100),
+    PRIMARY KEY(ID)
+);
+
+-- 테이블에 데이터 추가
+INSERT INTO NODEJS_MEMBER VALUES('aischool','1234','학생');
+
+-- 현재 상태 확정
+COMMIT;
+
+-- 데이터 조회alter
+SELECT * FROM NODEJS_MEMBER;
+
+-- 데이터 수정
+UPDATE NODEJS_MEMBER SET NICKNAME='우울한학생' WHERE ID='aischool';
+
+-- 데이터 삭제
+DELETE FROM NODEJS_MEMBER WHERE ID='aischool'
