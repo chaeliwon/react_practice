@@ -34,7 +34,7 @@ router.post("/join", (req, res) => {
     let sql = 'INSERT INTO NODEJS_MEMBER VALUES(?,?,?)';
     conn.query(sql, [req.body.data.id, req.body.data.password, req.body.data.nickname], (err, rows) => {
         if (err) {
-            console.log('insert query 이슈 발생!');
+            console.log('회원가입 이슈 발생!');
         }
         if (rows) {
             res.send({ result: "success" })
