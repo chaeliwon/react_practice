@@ -19,6 +19,11 @@ const JoinForm = () => {
         let res = await api.post("/join", { data: formData });
         console.log(res.data);
 
+        if(res.data.result==="success"){
+            alert("회원가입성공!")
+        }else{
+            alert("회원가입실패")
+        }
     };
 
     return (
