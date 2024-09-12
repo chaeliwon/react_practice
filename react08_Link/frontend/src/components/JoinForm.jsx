@@ -1,10 +1,12 @@
 import React, { useRef } from 'react';
 import api from '../api';
+import { useNavigate } from 'react-router-dom'
 
 const JoinForm = () => {
     const idRef = useRef(null);
     const passwordRef = useRef(null);
     const nicknameRef = useRef(null);
+    const navigate = useNavigate()
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,9 +21,10 @@ const JoinForm = () => {
         let res = await api.post("/join", { data: formData });
         console.log(res.data);
 
-        if(res.data.result==="success"){
+        if (res.data.result === "success") {
             alert("회원가입성공!")
-        }else{
+            navigate("/")
+        } else {
             alert("회원가입실패")
         }
     };

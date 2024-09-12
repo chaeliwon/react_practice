@@ -1,9 +1,11 @@
 import React, { useRef } from 'react'
 import api from '../api'
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
   const idRef = useRef(null);
   const passwordRef = useRef(null);
+  const navigate =  useNavigate();
 
 
   const handlelogin = async (e) => {
@@ -16,6 +18,10 @@ const LoginForm = () => {
 
     let res = await api.post("/login", { data: loginData });
     console.log(res.data);
+
+    if (res.data.result === "success") {
+      navigate("/")
+  }
   }
 
   return (

@@ -48,18 +48,20 @@ router.post("/login", (req, res) => {
     console.log('로그인으로 요청이 들어옴!', req.body);
 
     let sql = "SELECT * FROM NODEJS_MEMBER WHERE ID=? AND PW=?";
+    let ID = req.body.data.ID
+    let PW = req.body.data.PW
 
-    conn.query(sql, [req.body.data.ID, req.body.data.PW], (err, rows) => {
+    conn.query(sql, [ID, PW ], (err, rows) => {
         if (err) {
             console.error("로그인 실패!", err);
             return res.send({ result: "error"});
         }
         if (rows.length > 0) {
             // 데이터베이스에서 조회된 key값은 대소문자 구분이 되기 때문에 정확한 key값으로 접근해야한다.
-            res.send({ result: 'success', nickname:rows[0].NICKNAME })
+            return res.send({ result: 'success', nickname:rows[0].NICKNAME })
             
         } else {
-            res.send({ result: 'failed'});
+            return res.send({ result: 'failed'});
         }
     });
 });
