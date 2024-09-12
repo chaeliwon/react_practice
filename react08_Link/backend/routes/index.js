@@ -37,7 +37,7 @@ router.post("/join", (req, res) => {
             console.log('회원가입 이슈 발생!');
         }
         if (rows) {
-            res.send({ result: "success" })
+            res.send({ result: "success" });
         } else {
             res.send({ result: "failed" })
         }
@@ -55,9 +55,11 @@ router.post("/login", (req, res) => {
             return res.send({ result: "error"});
         }
         if (rows.length > 0) {
-            return res.send({ result: 'success' });
+            // 데이터베이스에서 조회된 key값은 대소문자 구분이 되기 때문에 정확한 key값으로 접근해야한다.
+            res.send({ result: 'success', nickname:rows[0].NICKNAME })
+            
         } else {
-            return res.send({ result: 'failed'});
+            res.send({ result: 'failed'});
         }
     });
 });
