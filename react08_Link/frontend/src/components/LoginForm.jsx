@@ -20,7 +20,17 @@ const LoginForm = () => {
     console.log(res.data);
 
     if (res.data.result === "success") {
-      navigate("/")
+      alert("로그인 성공!");
+
+      // 로그인 성공시 , session Storge에 보관 스토리지에 보관할때에는 문자열로 변환해서 저장해야한다
+      // -> 객체를 문자열로 변환 JSON.stringfy()
+      console.log(JSON.stringify(res.data));
+      
+      sessionStorage.setItem("userInfo", JSON.stringify(res.data))
+      
+      navigate("/");
+  } else {
+      alert("로그인 실패..");
   }
   }
 
