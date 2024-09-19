@@ -1,15 +1,22 @@
 import React, { useRef } from 'react'
+import api from '../api';
 
 const Join = () => {
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const nicknameRef = useRef(null);
-  const handleSubmit = () => {
-
+  const sendJoin = async (e) => {
+    e.preventDefault()
+    let joinData = {
+      id : idRef.current.value,
+      pw : pwRef.current.value,
+      nick : nicknameRef.current.value
+    }
+    let res = await api.post('/user/join', joinData)
   }
   return (
     <div className='content'>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={sendJoin}>
         <p>
           <label>ID : </label>
           <input type="text" ref={idRef} />
