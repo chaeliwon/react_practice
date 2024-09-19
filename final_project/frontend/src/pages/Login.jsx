@@ -1,16 +1,44 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { useNavigate } from 'react-router-dom';
+import api from '../api';
 
-const Login = () => {
+const Login = ({setNick}) => {
+  const idRef = useRef(null);
+  const pwRef = useRef(null);
+  const navigate = useNavigate();
+
+  const sendLogin = async (e) => {
+    e.preventDefault()
+
+    let loginData = {
+      id: idRef.current.value,
+      pw: pwRef.current.value
+    }
+
+    let res = await api.post('/user/login', loginData)
+
+    if(res.data.result ==="success"){
+      sessionStorage.setItem('nick', res.data.nick)
+      setNick(res.data.nick)
+      navigate("/");
+    }else{
+      alert('로그인 실패!!')
+    }
+  }
+
+
   return (
+
+
     <div className='content'>
-      <form>
+      <form onSubmit={sendLogin}>
         <p>
           <label>ID : </label>
-          <input type="text" />
+          <input type="text" ref={idRef} />
         </p>
         <p>
           <label>PW : </label>
-          <input type="password" />
+          <input type="password" ref={pwRef} />
         </p>
         <p>
           <input type="submit" value='Login' />
