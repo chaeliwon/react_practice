@@ -1,22 +1,52 @@
 import React, { useEffect, useState } from 'react'
-import { Map, MapMarker } from "react-kakao-maps-sdk"
-import useKakaoLoader from './usekakaoLoader'
+import { Map, MapMarker, useMap } from "react-kakao-maps-sdk"
+import useKakaoLoader from "./usekakaoLoader"
+import api from '../api'
+import { getFID } from 'web-vitals'
 
-const Mapcomponent = () => {
+const MapComponent = () => {
     useKakaoLoader()
 
+    // const [isOpen, setIsOpen] = useState(false)
+    const [position, setPosition] = useState(null)
+
+    //현재 위치(위경도) 확인
     const getCurrentPosition = () => {
         navigator.geolocation.getCurrentPosition((position) => {
-            console.log("현재위치", position);
-
+            console.log("현재위치:", position);
         })
     }
 
+    //서버로부터 위치정보 요청
+    const getFoodPlace = async () =>{
+        let res = await api.get('/place/position')
+
+        console.log(res.data);     
+        
+        setPosition(res.data.position)
+    }
+
+    const EventMarkerContainer = ({ position, title }) => {
+        const map = useMap()
+        const [isVisible, setIsVisible] = useState(false)
+    
+        return (
+          <MapMarker
+            position={position} // 마커를 표시할 위치
+            // @ts-ignore
+            onClick={(marker) => map.panTo(marker.getPosition())}
+            onMouseOver={() => setIsVisible(true)}
+            onMouseOut={() => setIsVisible(false)}
+          >
+            {isVisible && <div style={{ padding: "5px", color: "#000" }}>{title}</div>}
+          </MapMarker>
+        )
+      }
+
     useEffect(() => {
         getCurrentPosition()
+        getFoodPlace()
     }, [])
-
-    const [isOpen, setIsOpen] = useState(false)
 
     return (
         <div>
@@ -24,42 +54,34 @@ const Mapcomponent = () => {
                 id="map"
                 center={{
                     // 지도의 중심좌표
-                    lat: 35.1466406,
-                    lng: 126.9222827,
+                    lat: 35.1469568,
+                    lng: 126.9235712,
                 }}
                 style={{
                     // 지도의 크기
                     width: "100%",
                     height: "350px",
                 }}
-                level={1} // 지도의 확대 레벨
+                level={3} // 지도의 확대 레벨
             >
-                <MapMarker // 마커를 생성합니다
-                    position={{
-                        // 마커가 표시될 위치입니다
-                        lat: 35.1466406,
-                        lng: 126.9222827,
-                    }}
-                    clickable={true} // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
-                    // 마커에 마우스오버 이벤트를 등록합니다
-                    onMouseOver={
-                        // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
-                        () => setIsOpen(true)
-                    }
-                    // 마커에 마우스아웃 이벤트를 등록합니다
-                    onMouseOut={
-                        // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
-                        () => setIsOpen(false)
-                    }
-                >
-                    {/* MapMarker의 자식을 넣어줌으로 해당 자식이 InfoWindow로 만들어지게 합니다 */}
-                    {/* 인포윈도우에 표출될 내용으로 HTML 문자열이나 React Component가 가능합니다 */}
-                    {isOpen && <div style={{ padding: "5px", color: "#000" }}>마우스 오버 이벤트!!</div>}
-                </MapMarker>
-
+                { position?.map((pos)=>(
+                    <EventMarkerContainer
+                    key={`EventMarkerContainer-${pos.latlng.lat}-${pos.latlng.lng}`}
+                    position={pos.latlng}
+                    title={pos.title}
+                  />
+                    // <MapMarker
+                    //     position={pos.latlng}
+                    //     clickable={true}
+                    //     onMouseOver={() => setIsOpen(true)}
+                    //     onMouseOut={() => setIsOpen(false)}
+                    // >
+                    //     {isOpen && <div style={{ padding: "5px", color: "#000" }}>{pos.title}</div>}
+                    // </MapMarker>
+                ))}
             </Map>
-        </div >
+        </div>
     )
 }
 
-export default Mapcomponent
+export default MapComponent
