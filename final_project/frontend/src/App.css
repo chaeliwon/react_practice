@@ -26,8 +26,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 20px;
+  /* gap: 20px; */
   /*  gap은 부모요소에 적용 */
+}
+.content-slide{
+  height:75%
 }
 
 .footer {
@@ -42,7 +45,8 @@
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   border: 5px solid lightgoldenrodyellow;
   width: 80%;
-  height: 25%;
+  height: 500px;
+  margin : 1% auto;
   /* 마진을 주고싶으면 자식요소에 직접! */
 }
 

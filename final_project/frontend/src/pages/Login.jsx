@@ -1,12 +1,13 @@
 import React, { useRef } from 'react'
 import { useNavigate } from 'react-router-dom';
 import api from '../api';
+import Swal from 'sweetalert2'
 
 const Login = ({setNick}) => {
   const idRef = useRef(null);
   const pwRef = useRef(null);
   const navigate = useNavigate();
-
+  
   const sendLogin = async (e) => {
     e.preventDefault()
 
@@ -22,7 +23,12 @@ const Login = ({setNick}) => {
       setNick(res.data.nick)
       navigate("/");
     }else{
-      alert('로그인 실패!!')
+      Swal.fire({
+        title: 'Error!',
+        text: '로그인 실패!',
+        icon: 'error',
+        confirmButtonText: 'Cool'
+      })
     }
   }
 

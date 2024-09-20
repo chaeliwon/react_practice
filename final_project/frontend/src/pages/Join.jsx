@@ -1,6 +1,7 @@
 import React, { useRef } from 'react'
 import api from '../api';
 import { useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2'
 
 const Join = () => {
   const idRef = useRef(null);
@@ -21,7 +22,12 @@ const Join = () => {
     if(res.data.result === "success"){
       navigate("/")
     }else{
-      alert("회원가입 오류 발생")
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "회원가입 오류 발생!",
+        footer: '<a href="#">Why do I have this issue?</a>'
+      });
     }
   }
 
